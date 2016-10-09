@@ -12,37 +12,44 @@
         <title>Remove from cart</title>
     </head>
     <body>
-        <% //String fabricDetails[] = request.getAttributeNames("enum");
-%>
-        <form method= "POST" action="Controller">
 
-            <c:forEach items="${fabricDetails}" var="entry">
-                <li>${entry.key} (${entry.value})</li>   
+        <div style="text-align:center;">
+            <table border="1" style="width:100%">
+                <tr>
+                    <td>
+                        <form method= "POST" action="Controller">
 
-            </c:forEach>
+                            <label for="remove"></label>
+                            <select name="remove" size="1" id="remove">
+                                <option value="Silk" selected>Silk</option>
+                                <option value="bobinet">bobinet</option>
+                                <option value="burlap">burlap</option>
+                                <option value="benaras">benaras</option>
+                                <option value="batik">batik</option>
+                                <option value="batiste">batiste</option>
+                                <option value="jute">jute</option>
+                                <option value="jersey">jersey</option>c
+                                <option value="knit">knit</option>
+
+                            </select>
+                            <input type="submit" name="remove"  value="Remove Article"></td></tr>
+
+                        </form>
+
+                    </td>
+                    <td>
+                        <form method= "POST" action="Controller">
+
+                            <input type="submit" name="removeAll"  value="Remove All"></tr>
+
+                        </form>
 
 
-          
 
-                <label for="remove"></label>
-                <select name="remove" size="1" id="remove">
-                    <option value="Silk" selected>Silk</option>
-                    <option value="bobinet">bobinet</option>
-                    <option value="burlap">burlap</option>
-                    <option value="benaras">benaras</option>
-                    <option value="batik">batik</option>
-                    <option value="batiste">batiste</option>
-                    <option value="jute">jute</option>
-                    <option value="jersey">jersey</option>c
-                    <option value="knit">knit</option>
+                    </td>
+                </tr>
 
-                </select>
-                <input type="submit" name="remove"  value="Remove Article"></td></tr>
-
-            </form>
-
+            </table><br><br>
             <a href="index.jsp">Listing & add article into cart</a>
-
-        </form>
     </body>
 </html>

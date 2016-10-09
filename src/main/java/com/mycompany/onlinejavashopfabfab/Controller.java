@@ -49,229 +49,313 @@ public class Controller extends HttpServlet {
                 action = "ViewAll";
 
             }
-            
+
             if (request.getParameter("Add") != null) {
 
                 action = "Add";
 
             }
 
-          if (request.getParameter("cartContent") != null) {
+            if (request.getParameter("cartContent") != null) {
 
                 action = "cartContent";
 
             }
-          
-          if (request.getParameter("ViewArticle") != null) {
 
-              action = "ViewArticle";
+            if (request.getParameter("ViewArticle") != null) {
 
-            }
-        
-           if (request.getParameter("watchList") != null) {
-
-              action = "watchList";
+                action = "ViewArticle";
 
             }
-           
-              if (request.getParameter("remove") != null) {
 
-              action = "remove";
+            if (request.getParameter("watchList") != null) {
+
+                action = "watchList";
 
             }
-           
 
-        } else{
-            
+            if (request.getParameter("remove") != null) {
+
+                action = "remove";
+
+            }
+
+            if (request.getParameter("removeAll") != null) {
+
+                action = "removeAll";
+
+            }
+
+        } else {
+
             if (request.getParameter("ViewAll") != null) {
 
                 action = "ViewAll";
 
             }
-            
+
             if (request.getParameter("Add") != null) {
 
-               action = "Add";
+                action = "Add";
 
             }
-        
+
             if (request.getParameter("cartContent") != null) {
 
-              action = "cartContent";
+                action = "cartContent";
 
             }
-            
+
             if (request.getParameter("ViewArticle") != null) {
 
-              action = "ViewArticle";
+                action = "ViewArticle";
 
             }
-            
-             if (request.getParameter("watchList") != null) {
 
-              action = "watchList";
+            if (request.getParameter("watchList") != null) {
 
-            }
-        
-               if (request.getParameter("remove") != null) {
-
-              action = "remove";
+                action = "watchList";
 
             }
-        
-             
-        
+
+            if (request.getParameter("remove") != null) {
+
+                action = "remove";
+
+            }
+
+            if (request.getParameter("removeAll") != null) {
+
+                action = "removeAll";
+
+            }
+
         }
 
         if (action.equals("ViewAll")) {
 
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
+
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet NewServlet</title>");
+                out.println("<title>ViewAll</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1> Fabric : " + "</h1>");
+
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
+
+                out.println("<th>FabricName</th>");
+
                 for (Articles art : Articles.values()) {
 
-                    out.println(art.getValue());
+                    out.println("<td>" + art.getValue() + "</td>");
 
                 }
-                out.println("<a href=\"index.jsp\">Back</a>");
-                out.println("</body>");
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+
                 out.println("</body>");
                 out.println("</html>");
             }
 
         }
-    
-    
-     if (action.equals("Add")) {
-         
-          visitor.listItemsBasket.add(request.getParameter("Add"));
+
+        if (action.equals("Add")) {
+
+            visitor.listItemsBasket.add(request.getParameter("Add"));
 
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-              
+
                 out.println("</head>");
                 out.println("<body>");
-                
-                out.println("<h1> Fabric added : " + request.getParameter("Add") + "</h1>");
-                out.println("<a href=\"index.jsp\">Back</a>");
-                out.println("</body>");
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
+
+                out.println("<th>FabricName added</th>");
+
+                out.println("<td>" + request.getParameter("Add") + "</td>");
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
                 out.println("</body>");
                 out.println("</html>");
             }
 
         }
-     if (action.equals("cartContent")) {
-      try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CartContent</title>");
-            out.println("</head>");
-            out.println("<body>");
+        if (action.equals("cartContent")) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet CartContent</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
 
-            out.println("<h1> ListItemsBasket : "+"<br/>");
-            for (int i = 0; i < visitor.getListItemsBasket().size(); i++) {
-                if (visitor.getListItemsBasket().get(i) != null) {
-                    out.println(visitor.getListItemsBasket().get(i)+"<br/>");
+                out.println("<th>Cart content</th>");
+                for (int i = 0; i < visitor.getListItemsBasket().size(); i++) {
+                    if (visitor.getListItemsBasket().get(i) != null) {
+                        out.println("<td>" + visitor.getListItemsBasket().get(i) + "</td>" + "<br/>");
+                    }
+                    //out.println(visitor.getListItemsBasket().get(i));
                 }
-                //out.println(visitor.getListItemsBasket().get(i));
-            }
-            out.println("<a href=\"index.jsp\">Back</a>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-     }
-     
-     if (action.equals("ViewArticle")) {
-          visitor.addWatch(request.getParameter("ViewArticle"));
-      try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>ViewArticle</title>");
-            out.println("</head>");
-            out.println("<body>");
-            
-            for (Articles art : Articles.values()) {
-              if( art.getValue().equals(request.getParameter("ViewArticle"))){
-               out.println(art.getValue());
-               out.println(art.getColour());
-               out.println(art.getKey());
-             }
-             
-            }
+                out.println("</tr>");
 
-            out.println("<a href=\"index.jsp\">Back</a>");
-            out.println("</body>");
-            out.println("</body>");
-            out.println("</html>");
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
-     }
-      if (action.equals("watchList")) {
-      try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title> watchList</title>");
-            out.println("</head>");
-            out.println("<body>");
-           
-            out.println("<h1> WatchListItems : " + "<br/>");
-            for (int i = 0; i < visitor.getWatchListItem().size(); i++) {
-              
-                if (visitor.getWatchListItem().get(i) != null) {
-                    out.println(visitor.getWatchListItem().get(i) + "<br/>");
+
+        if (action.equals("ViewArticle")) {
+            visitor.addWatch(request.getParameter("ViewArticle"));
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>ViewArticle</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
+
+                out.println("<th>View Article</th>");
+
+                for (Articles art : Articles.values()) {
+                    if (art.getValue().equals(request.getParameter("ViewArticle"))) {
+
+                        out.println("<td>" + art.getValue() + "</td>" + "<br/>");
+                        out.println("<td>" + art.getColour() + "</td>" + "<br/>");
+                        out.println("<td>" + art.getKey() + "</td>" + "<br/>");
+                        out.println("<td>" + art.getCountry() + "</td>" + "<br/>");
+
+                    }
+
                 }
-                
+
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+                out.println("</body>");
+                out.println("</html>");
             }
-            out.println("<a href=\"index.jsp\">Back</a>");
-            out.println("</body>");
-            out.println("</html>");
         }
-      }
-      
-          
+        if (action.equals("watchList")) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title> watchList</title>");
+                out.println("</head>");
+                out.println("<body>");
 
-        
-if (action.equals("remove")) {
-     visitor.listItemsBasket.remove(request.getParameter("remove"));
-}
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Remove</title>");
-            out.println("</head>");
-            out.println("<body>");
-            
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
 
-                out.println("<h1> Fabric removed : " + request.getParameter("remove") + "</h1>");
+                out.println("<th>WatchListItems</th>");
 
-            
+                for (int i = 0; i < visitor.getWatchListItem().size(); i++) {
 
-            out.println("<a href=\"index.jsp\">Back</a>");
-            out.println("</body>");
-            out.println("</body>");
-            out.println("</html>");
+                    if (visitor.getWatchListItem().get(i) != null) {
+                        out.println("<td>" + visitor.getWatchListItem().get(i) + "</td>" + "<br/>");
+                    }
+
+                }
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
 
+        if (action.equals("remove")) {
+            visitor.listItemsBasket.remove(request.getParameter("remove"));
 
-      session.setAttribute("visitor", visitor);
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Remove</title>");
+                out.println("</head>");
+                out.println("<body>");
+
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
+
+                out.println("<th>Fabric removed</th>");
+
+                out.println("<td>" + request.getParameter("remove") + "</td>" + "</h1>");
+
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
+
+        if (action.equals("removeAll")) {
+            visitor.listItemsBasket.clear();
+
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Remove</title>");
+                out.println("</head>");
+                out.println("<body>");
+
+                out.println("<table border=\"1\" style=\"width:100%\">");
+                out.println("<tr>");
+
+                out.println("The shopping basket has been cleared");
+
+                out.println("</tr>");
+
+                out.println("</table>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<center><a href=\"index.jsp\">Back</a></center>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
+
+        session.setAttribute("visitor", visitor);
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
